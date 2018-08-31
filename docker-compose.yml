@@ -1,0 +1,19 @@
+version: '2'
+services:
+    php7-nginx:
+        image: mayer2017/centos-php7-nginx
+        tty: true
+        privileged: true
+        restart: unless-stopped
+        command: /usr/sbin/init
+        ports:
+            - "20022:22"
+            - "20080:80"
+        volumes:
+            - ./centos-disk-1:/mnt/centos
+        networks:
+            - centos-php7-nginx
+        container_name: php7-nginx
+networks:
+    centos-php7-nginx:
+        driver: bridge
